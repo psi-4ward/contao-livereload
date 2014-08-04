@@ -19,13 +19,12 @@ Use Compoeser!<br>
 ## Server installation
 1. You need NodeJS and NPM installed! [Google knows how](https://www.google.com/?q=How+to+install+nodejs)
 2. Download the [Contao-Liveupdate-Server](https://github.com/psi-4ward/contao-livereload-server/archive/master.zip)
-3. Run the `bin/contao-livereload` file from any contao root directory <br>
-``` 
-~/htdocs/musicacademy/ $ ../contao-livereload-server/bin/contao-livereload 
-```
-4. Open any contao frontend page 
-5. Start editing your CSS
-6. Enjoy the magic
+3. Run `npm install` in the server directory 
+4. Run the `bin/contao-livereload` file from any contao root directory <br>
+   f.i. `~/htdocs/musicacademy/ $ ../contao-livereload-server/bin/contao-livereload`
+5. Open any contao frontend page 
+6. Start editing your CSS
+7. Enjoy the magic
 
 PS: I added an alias to my bashrc to run contao-livereload from everywhere
 ``` 
