@@ -18,7 +18,7 @@ Use Compoeser!<br>
 
 ## Server installation
 1. You need NodeJS and NPM installed! [Google knows how](https://www.google.com/?q=How+to+install+nodejs)
-2. Download the [Contao-Liveupdate-Server](https://github.com/psi-4ward/contao-livereload-server/archive/master.zip)
+2. Download the [Contao-Livereload-Server](https://github.com/psi-4ward/contao-livereload-server/archive/master.zip)
 3. Run `npm install` in the server directory
 
 ## Using Contao-Livereload
