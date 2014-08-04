@@ -1,0 +1,40 @@
+{
+  "name": "psi/contao-livereload",
+  "description": "Contao CSS Livereload Client",
+  "keywords": ["contao"],
+  "type": "contao-module",
+  "homepage": "https://github.com/psi-4ward/contao-livereload",
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "Christoph Wiechert",
+      "email": "wio@psitrax.de",
+      "homepage": "http://4wardmedia.de",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "wio@psitrax.de",
+    "issues": "https://github.com/psi-4ward/contao-livereload/issues",
+    "forum": "https://community.contao.org/de/forumdisplay.php?110-4ward",
+    "irc": "irc://irc.freenode.org/contao.dev",
+    "source": "https://github.com/psi-4ward/contao-livereload"
+  },
+  "require": {
+    "php": ">=5.3",
+    "contao/core": ">=3.1,<4"
+  },
+  "conflict": {
+    "contao/core": "3.0.*"
+  },
+  "extra": {
+    "contao": {
+      "sources": {
+        "": "system/modules/contao-livereload"
+      }
+    },
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}
