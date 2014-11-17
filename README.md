@@ -18,33 +18,37 @@ Use Compoeser!<br>
 
 ## Server installation
 1. You need NodeJS and NPM installed! [Google knows how](https://www.google.com/?q=How+to+install+nodejs)
-2. Download the [Contao-Livereload-Server](https://github.com/psi-4ward/contao-livereload-server/archive/master.zip)
-3. Run `npm install` in the server directory
+2. Run `sudo npm -g install contao-livereload` in the server directory
 
 ## Using Contao-Livereload
 
-1. Run the `bin/contao-livereload` file from any contao root directory <br>
-   f.i. `~/htdocs/musicacademy/ $ ../contao-livereload-server/bin/contao-livereload`
+1. Run the `contao-livereload` file from any contao root directory
+2. Activate the feature in your Backend-User Profile (`contao/main.php?do=login`)
 2. Open any contao frontend page 
 3. Start editing your CSS
 4. Enjoy the magic
 
 ## Tipps
 
-* Add an alias to my bashrc to run contao-livereload from everywhere<br>
-  `echo alias ctolr=~/htdocs/contao-livereload-server/bin/contao-livereload >> ~/.bashrc`
-* You can also use a simlink in your bin directory.
-* Its GulpJS based, so you can run it without my helper bash script
+* Add watchers to trigger the livereload for files not directly referenced in Contao.
+ Useful if you have `@import` in your less files: <br>
+ `contao-livereload -w files/layout/**/*.less`
 
-```bash
-psi@psi:~webroot/contao-livereload$ gulp
-Usage: gulp -u mycontaosite -w "files/layout/*.less"
+```
+Usage: contao-livereload -d path -w "files/layout/**/*.less"
+
+Examples:
+  contao-livereload -d ContaoProject -w files/layout/**/*.less -w files/layout/**/*.css    
+
 
 Options:
-  -d  Contao directory  [required]
-  -w  Add more watcher
-  
-psi@psi:~webroot/contao-livereload$ gulp -d ../isotopedemo -w "files/layout/*.less" -w "files/base.css"
+  -d  Contao directory path, default is the current working directory
+  -w  Add file watchers, you can use globbing
+  -h  Help
+```
+
+```
+psi@psi:~webroot/isotopedemo$ contao-livereload -w "files/layout/*.less" -w "files/base.css"
 [gulp] Using gulpfile ~/webroot/contao-livereload/gulpfile.js
 [gulp] Starting 'default'...
 [19:21:57] Assume Contao root directory in /home/psi/webroot/isotopedemo
@@ -69,4 +73,4 @@ psi@psi:~webroot/contao-livereload$ gulp -d ../isotopedemo -w "files/layout/*.le
 ```
 
 License: http://www.gnu.org/licenses/lgpl-3.0.html LGPL <br>
-Author: [4ward.media](http://www.4wardmedia.de)
+Author: Christoph Wiechert [4ward.media](http://www.4wardmedia.de)
