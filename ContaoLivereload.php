@@ -23,12 +23,15 @@ class ContaoLivereload
         $DB = \Database::getInstance();
         $Session = $DB->prepare('SELECT pid FROM tl_session WHERE name="BE_USER_AUTH" AND hash=?')->limit(1)->execute($_COOKIE['BE_USER_AUTH']);
         if(!$Session->numRows) return $strBuffer;
-        $User = $DB->prepare('SELECT contaoLivereload_enabled, contaoLivereload_server FROM tl_user WHERE id=?')->execute($Session->pid);
+        $User = $DB->prepare('SELECT contaoLivereload_enabled, contaoLivereload_server,contaoLivereload_lrPort,contaoLivereload_reqPort FROM tl_user WHERE id=?')->execute($Session->pid);
 
         if(!$User->contaoLivereload_enabled) return $strBuffer;
         $srv = $User->contaoLivereload_server;
         if(!$srv) $srv = 'http://localhost';
         else if(substr($srv,-1, 1) === '/') $srv = substr($srv, 0, -1);
+        $reqPort = $User->contaoLivereload_reqPort ?: 35720;
+        $lrPort = $User->contaoLivereload_lrPort ?: 35729;
+
         $arrCombined = array();
 
         foreach((array)$GLOBALS['TL_FRAMEWORK_CSS'] as $f) {
@@ -49,7 +52,7 @@ class ContaoLivereload
 
 
         $str = '<script type="application/json" id="contao-livereload-files">'.json_encode($arrCombined).'</script>';
-        $str .= '<script type="text/javascript" src="'.$srv.':35729/livereload.js"></script>';
+        $str .= '<script type="text/javascript" src="'.$srv.':'.$lrPort.'/livereload.js"></script>';
         $json = json_encode($arrCombined);
         $str .= <<<JAVASCRIPT
 <script type="text/javascript">
@@ -69,7 +72,7 @@ class ContaoLivereload
 
     $.ajax({
       type: "POST",
-      url: '{$srv}:35720',
+      url: '{$srv}:{$reqPort}',
       processData: false,
       contentType: 'application/json',
       data: JSON.stringify({cfiles: cfiles, cdest: cdest, nfiles: nfiles}),
