@@ -34,6 +34,8 @@ Use Composer!<br>
 * Add watchers to trigger the livereload for files not directly referenced in Contao.
  Useful if you have `@import` in your less files: <br>
  `contao-livereload -w files/layout/**/*.less`
+* You can run the Contao-Livereload-Server on your webserver, be sure to configure the
+  correct Host in your backend profile. If you have problems check the server firewall.
 
 ## Server usage
 ```
@@ -46,6 +48,8 @@ Examples:
 Options:
   -d  Contao directory path, default is the current working directory
   -w  Add file watchers, you can use globbing
+  --lr-port   Port of the livereload server                                    [default: 35729]
+  --req-port  Port listen on for Contao requests                               [default: 35720]
   -h  Help
 ```
 
