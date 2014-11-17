@@ -13,19 +13,20 @@ Livereload the CSS in the Browser whenever a file changes.
 3. Whenever you load a Contao page in your Browser a AJAX call tells the livereload-server which (uncombined) stylesheets youre working with.  
 
 ## Client installation
-Use Compoeser!<br>
+Use Composer!<br>
 *Or copy all files to system/modules/contao-livereload and update the database*
 
 ## Server installation
 1. You need NodeJS and NPM installed! [Google knows how](https://www.google.com/?q=How+to+install+nodejs)
-2. Run `sudo npm -g install contao-livereload` in the server directory
+2. Run `sudo npm -g install contao-livereload` <br>
+   *You can use one server installation for every contao project*
 
 ## Using Contao-Livereload
 
 1. Run the `contao-livereload` file from any contao root directory
 2. Activate the feature in your Backend-User Profile (`contao/main.php?do=login`)
 2. Open any contao frontend page 
-3. Start editing your CSS
+3. Start editing your CSS/LESS
 4. Enjoy the magic
 
 ## Tipps
@@ -34,6 +35,7 @@ Use Compoeser!<br>
  Useful if you have `@import` in your less files: <br>
  `contao-livereload -w files/layout/**/*.less`
 
+## Server usage
 ```
 Usage: contao-livereload -d path -w "files/layout/**/*.less"
 
@@ -47,6 +49,7 @@ Options:
   -h  Help
 ```
 
+### example output
 ```
 psi@psi:~webroot/isotopedemo$ contao-livereload -w "files/layout/*.less" -w "files/base.css"
 [gulp] Using gulpfile ~/webroot/contao-livereload/gulpfile.js
