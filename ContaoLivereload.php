@@ -27,6 +27,7 @@ class ContaoLivereload
 
         if(!$User->contaoLivereload_enabled) return $strBuffer;
         $srv = $User->contaoLivereload_server;
+        if(substr($srv,-1, 1) === '/') $srv = substr($srv, 0, -1);
         $arrCombined = array();
 
         foreach((array)$GLOBALS['TL_FRAMEWORK_CSS'] as $f) {
