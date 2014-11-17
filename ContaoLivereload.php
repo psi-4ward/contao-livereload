@@ -16,7 +16,7 @@ class ContaoLivereload
 
     public function addJscript($strBuffer, $strTemplate)
     {
-        if(!preg_match("~^fe_page.*~", $strTemplate)) return $strBuffer;
+        if(!preg_match("~^fe_.*~", $strTemplate)) return $strBuffer;
 
         if(!$_COOKIE['BE_USER_AUTH']) return $strBuffer;
 
