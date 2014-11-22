@@ -4,7 +4,7 @@ Livereload the CSS in the Browser whenever a file changes.
 
 * **Supports the Contao Combiner !**
 * Supports LessCSS
-* Supports SASS (planned)
+* Supports SASS (Compass)
 
 ## How it works
 
