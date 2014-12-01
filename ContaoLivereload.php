@@ -45,7 +45,7 @@ class ContaoLivereload
 
         foreach((array)$GLOBALS['TL_USER_CSS'] as $f) {
             $f = explode('|', $f);
-            if($f[2] && $f[2] == 'static') {
+            if($f[1] && $f[1] == 'static' || $f[2] && $f[2] == 'static') {
                 $arrCombined[] = $f[0];
             }
         }
