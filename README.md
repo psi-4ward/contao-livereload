@@ -6,6 +6,9 @@ Livereload the CSS in the Browser whenever a file changes.
 * Supports LessCSS
 * Supports SASS (Compass)
 
+
+[![Video](http://img.youtube.com/vi/tLC61akhH0g/0.jpg)](http://www.youtube.com/watch?v=tLC61akhH0g)
+
 ## How it works
 
 1. You have to run the contao-livereload-server on the Machine holding the Stylesheet files.
