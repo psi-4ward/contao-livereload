@@ -50,6 +50,25 @@ class ContaoLivereload
             }
         }
 
+        global $objPage;
+        $pageDetails = Controller::getPageDetails($objPage->id);
+        $objLayout = LayoutModel::findByPk($pageDetails->layout);
+
+        if($objLayout->theme_plus_stylesheets) {
+        	$cssIds = deserialize($objLayout->theme_plus_stylesheets);
+
+        	$themePlusCss = $DB->query("SELECT * FROM tl_theme_plus_stylesheet WHERE ID in(".implode(',', $cssIds).")")->fetchAllAssoc();
+
+        	if($themePlusCss) {
+        		foreach ((array)$themePlusCss as $f) {
+		        	$objFiles = FilesModel::findByUuid($f['file']);
+		        	if($objFiles->path) {
+		                $arrCombined[] = $objFiles->path;
+		        	}
+		        }
+        	}
+        }
+
 
         $str = '<script type="application/json" id="contao-livereload-files">'.json_encode($arrCombined).'</script>';
         $str .= '<script type="text/javascript" src="'.$srv.':'.$lrPort.'/livereload.js"></script>';
