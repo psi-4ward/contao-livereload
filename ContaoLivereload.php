@@ -27,7 +27,7 @@ class ContaoLivereload
 
         if(!$User->contaoLivereload_enabled) return $strBuffer;
         $srv = $User->contaoLivereload_server;
-        if(!$srv) $srv = 'http://localhost';
+        if(!$srv) $srv = Environment::getInstance()->url;
         else if(substr($srv,-1, 1) === '/') $srv = substr($srv, 0, -1);
         $reqPort = $User->contaoLivereload_reqPort ?: 35720;
         $lrPort = $User->contaoLivereload_lrPort ?: 35729;
