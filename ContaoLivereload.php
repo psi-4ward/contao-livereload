@@ -27,7 +27,7 @@ class ContaoLivereload
 
         if(!$User->contaoLivereload_enabled) return $strBuffer;
         $srv = $User->contaoLivereload_server;
-        if(!$srv) $srv = 'http://localhost';
+        if(!$srv) $srv = Environment::getInstance()->url;
         else if(substr($srv,-1, 1) === '/') $srv = substr($srv, 0, -1);
         $reqPort = $User->contaoLivereload_reqPort ?: 35720;
         $lrPort = $User->contaoLivereload_lrPort ?: 35729;
@@ -48,6 +48,25 @@ class ContaoLivereload
             if($f[1] && $f[1] == 'static' || $f[2] && $f[2] == 'static') {
                 $arrCombined[] = $f[0];
             }
+        }
+
+        global $objPage;
+        $pageDetails = Controller::getPageDetails($objPage->id);
+        $objLayout = LayoutModel::findByPk($pageDetails->layout);
+
+        if($objLayout->theme_plus_stylesheets) {
+        	$cssIds = deserialize($objLayout->theme_plus_stylesheets);
+
+        	$themePlusCss = $DB->query("SELECT * FROM tl_theme_plus_stylesheet WHERE ID in(".implode(',', $cssIds).")")->fetchAllAssoc();
+
+        	if($themePlusCss) {
+        		foreach ((array)$themePlusCss as $f) {
+		        	$objFiles = FilesModel::findByUuid($f['file']);
+		        	if($objFiles->path) {
+		                $arrCombined[] = $objFiles->path;
+		        	}
+		        }
+        	}
         }
 
 
